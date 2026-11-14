@@ -1,0 +1,28 @@
+==============================================================================
+家宽判定审计单 / Residential IP Audit
+生成时间: 2026-11-14 04:18:23 UTC
+==============================================================================
+
+说明:
+  · exit_ip  = sing-box 实测穿透后获取的真实出口 IP (判定的唯一依据)
+  · server   = 订阅 URI 里写的入口地址, 可能是 CDN 反代, 与出口无关
+  · 判定档位 :
+      residential      = 严格家宽 (rDNS/ASN 白名单等强特征)
+      residential_soft = 疑似家宽 (仅弱阳性信号, 可能混有小型 IDC)
+      mobile           = 移动网络
+  · hosting/proxy/mobile 为 ip-api.com 原始字段; fraud 为 Scamalytics 风控分
+    (越高越危险, >=75 会降级出家宽区, >=90 全池剔除)
+  · 复核建议 : 把 exit_ip 贴进 https://scamalytics.com/ip/<IP> 与
+               https://bgp.he.net/ip/<IP> 看 ASN 归属是否真是民用运营商
+
+本轮家宽节点数: 1
+
+[1] KR  严格家宽  置信度 82
+     exit_ip : 49.254.204.133
+     server  : 49.254.204.133:1774  (shadowsocks)
+     ASN     : AS4766 Korea Telecom
+     ISP     : Korea Telecom
+     ORG     : Haionnet
+     ip-api  : hosting=False proxy=False mobile=False reverse=-
+     ipapi.is: company=HAIonNet asn=AS4766 Korea Telecom
+     fraud   : 0  (-1 = 未取到评分)
